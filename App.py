@@ -76,12 +76,13 @@ for nombre_archivo in archivos_txt:
         st.write(f"- Buenas (> -22 dBm): {buenas} ({porc_buenas:.2f}%)")
         st.write(f"- Malas (≤ -22 dBm): {malas} ({porc_malas:.2f}%)")
 
-        # Gráfica de torta
-        etiquetas = [f"Buenas ({porc_buenas:.1f}%)", f"Malas ({porc_malas:.1f}%)"]
-        fig, ax = plt.subplots()
-        ax.pie([buenas, malas], labels=etiquetas, colors=["green", "red"], autopct='%1.1f%%', startangle=140)
-        ax.set_title(f"Distribución Rx Power - {nombre_archivo}")
-        st.pyplot(fig)
+        if st.button(f"Mostrar gráfica de {nombre_archivo}"):
+            # Gráfica de torta
+            etiquetas = [f"Buenas ({porc_buenas:.1f}%)", f"Malas ({porc_malas:.1f}%)"]
+            fig, ax = plt.subplots()
+            ax.pie([buenas, malas], labels=etiquetas, colors=["green", "red"], autopct='%1.1f%%', startangle=140)
+            ax.set_title(f"Distribución Rx Power - {nombre_archivo}")
+            st.pyplot(fig)
 
     except Exception as e:
         st.error(f"❌ Error al procesar {nombre_archivo}: {e}")
