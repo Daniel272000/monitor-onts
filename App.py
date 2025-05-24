@@ -19,7 +19,7 @@ if resp.status_code != 200:
     st.stop()
 
 fechas = sorted([item["name"] for item in resp.json() if item["type"] == "dir" and "-" in item["name"]])
-fecha_seleccionada = st.selectbox("🗓️ Selecciona la fecha:", fechas)
+fecha_seleccionada = st.selectbox("📅 Selecciona la fecha:", fechas)
 
 # Obtener subcarpetas dentro de la fecha seleccionada
 sub_url = f"https://api.github.com/repos/{usuario}/{repo}/contents/{fecha_seleccionada}?ref={branch}"
@@ -76,8 +76,7 @@ for nombre_archivo in archivos_txt:
         st.write(f"- Buenas (> -22 dBm): {buenas} ({porc_buenas:.2f}%)")
         st.write(f"- Malas (≤ -22 dBm): {malas} ({porc_malas:.2f}%)")
 
-        if st.button(f"Mostrar gráfica de {nombre_archivo}"):
-            # Gráfica de torta más pequeña
+        with st.expander(f"Mostrar gráfica de {nombre_archivo}"):
             etiquetas = [f"Buenas ({porc_buenas:.1f}%)", f"Malas ({porc_malas:.1f}%)"]
             fig, ax = plt.subplots(figsize=(4, 4))
             ax.pie([buenas, malas], labels=etiquetas, colors=["green", "red"], autopct='%1.1f%%', startangle=140)
