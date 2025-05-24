@@ -78,8 +78,15 @@ for nombre_archivo in archivos_txt:
 
         with st.expander(f"Mostrar gráfica de {nombre_archivo}"):
             etiquetas = [f"Buenas ({porc_buenas:.1f}%)", f"Malas ({porc_malas:.1f}%)"]
-            fig, ax = plt.subplots(figsize=(1, 1))
-            ax.pie([buenas, malas], labels=etiquetas, colors=["green", "red"], autopct='%1.1f%%', startangle=140)
+            fig, ax = plt.subplots(figsize=(4, 4))  # Tamaño cuadrado
+            ax.pie(
+                [buenas, malas],
+                labels=etiquetas,
+                colors=["green", "red"],
+                autopct='%1.1f%%',
+                startangle=140,
+                textprops={'fontsize': 10}  # Tamaño más pequeño de etiquetas
+            )
             ax.set_title(f"Distribución Rx Power - {nombre_archivo}")
             st.pyplot(fig)
 
