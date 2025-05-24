@@ -78,7 +78,7 @@ for nombre_archivo in archivos_txt:
 
         with st.expander(f"Mostrar gráfica de {nombre_archivo}"):
             etiquetas = [f"Buenas ({porc_buenas:.1f}%)", f"Malas ({porc_malas:.1f}%)"]
-            fig, ax = plt.subplots(figsize=(4, 4))  # Tamaño cuadrado
+            fig, ax = plt.subplots(figsize=(0.5, 1))  # Tamaño cuadrado
             ax.pie(
                 [buenas, malas],
                 labels=etiquetas,
